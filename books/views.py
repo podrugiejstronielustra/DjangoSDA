@@ -40,7 +40,7 @@ def get_arguments_from_query(request: WSGIRequest) -> HttpResponse:
 # 15. Przygotuj funkcję drukująca odpowiedni komunikat dla method HTTP takich jak GET, POST, PUT, DELETE
 
 @csrf_exempt
-def check_http_query_type(request: WSGIRequest) -> HttpResponse:
+def check_http_query_types(request: WSGIRequest) -> HttpResponse:
     query_type = "Unknown"
 #    if request.method == "GET":
 #        query_type = "This is GET"
