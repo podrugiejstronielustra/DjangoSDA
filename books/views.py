@@ -24,4 +24,15 @@ def get_uuids_b(request: WSGIRequest) -> JsonResponse:
     uuids = [f"{uuid4()}" for _ in range(10)]
     return JsonResponse({"uuids":uuids})
 
+#13. Napisz funkcję przyjmującą argumenty w ściezce (path arguments) i wydrukuj je.
+# Dwa argumenty pierwszy typu int, drugi typu str, trzeci typu slug .
+
+
+
+def get_argument_from_path(request: WSGIRequest, x: int, y: str, z: str) -> HttpResponse:
+
+
+    return HttpResponse(f"X = {x}, Y = {y}, Z = {z}")
+
+
 
