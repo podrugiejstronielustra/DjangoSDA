@@ -12,7 +12,7 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView, C
 from books.models import BookAuthor, Category, Book
 import logging
 
-from books.forms import CategoryForm, AuthorForm
+from books.forms import CategoryForm, AuthorForm, BookForm
 
 logger = logging.getLogger("Ala")
 
@@ -71,9 +71,19 @@ class AuthorUpdateView(UpdateView):
     def get_object(self, **kwargs):
         return get_object_or_404(BookAuthor, id=self.kwargs.get("pk"))
 
+class BookCreateView(CreateView):
+    template_name = "book_form.html"
+    form_class = BookForm
+    success_url =  reverse_lazy("books_list")
+
+# def get_success_url(self):
+#     return reverse_lazy("book_list")
+
 def get_hello(request: WSGIRequest) -> HttpResponse:
     hello = "hello world"
     return render(request, template_name="hello_world.html", context={"hello_var": hello})
+
+
 
 # 12. Utwórz funkcję zwracającą listę stringów. Stringi niech będą losowym UUID dodawanym do listy. Lista niech posiada 10 elementów.
 #
@@ -130,3 +140,4 @@ def raise_error_for_fun(request: WSGIRequest) -> HttpResponse:
     if request.method != "GET":
         raise BadRequest("Method not allowed")
     return HttpResponse("Everything is OK")
+
